@@ -129,30 +129,40 @@ textarea.addEventListener('keydown', (e) => {
   // Create a button with the text Start Countdown!.
   let countdownDiv = document.createElement('div');
   document.body.append(countdownDiv);
+  let printCountdownHere = document.createElement('div');
+  countdownDiv.append(printCountdownHere);
   let countdownButton = document.createElement('button');
   countdownButton.textContent = 'Start Countdown!';
   countdownDiv.append(countdownButton);
   //  When the User clicks the button, display a countdown sequence in the browser 
   //  as an <h2> from 10 to LIFTOFF!!.
   let countdownH2 = document.createElement('h2');
+  printCountdownHere.append(countdownH2);
+  //initialize a counter, we wanna start at 10 then count down, counter -= 1
   let counter = 10; 
+  //cr
   let countDownSequence = ()=>{
     if(counter <= 0){
+      //clearInterval stops whatever setInterval we create
+      //i could create a function to do this then call it when i want, but since i'm setting this if else statement, i'll just put it in the code to run if the counter = 0
       clearInterval(countDownSequence);
       countdownH2.textContent = 'LIFTOFF!!';
     }else{
+      //set the text content of whatever the counter is, we'll decrement at the end of the function
       countdownH2.textContent = `${counter} seconds to LIFTOFF!!`;
     }
+    //decreases the counter by one after if and else statements are checked
     counter -= 1;
   }
   let displayCountdownSequence = ()=>{
-    let letsCountDown = setInterval(countDownSequence, 1000);
-    countdownH2.textContent = `10 to LIFTOFF!!`
+    //sets the timing of the function to 1 second, so basically, function runs every second until the clearInterval is called
+    setInterval(countDownSequence, 1000);
   }
   countdownButton.addEventListener('click', ()=>{
     //im pretty sure there's a js method than tracks time...
     //there's the setTimeout and setInterval that i was playing with during the stretch goal of last lab
     //stop execution with clearTimeout
+    countDownSequence();
     displayCountdownSequence();
   })
   //  Display each number during the countdown each second (1000 ms),
@@ -161,6 +171,7 @@ textarea.addEventListener('keydown', (e) => {
 
   //   Challenge 1
   // Create additional strings and load them in an array
+  let vForVendetta = ['Voila! In view humble vaudevillian veteran, cast vicariously as both victim and villain by the vicissitudes of fate. This visage, no mere veneer of vanity, is a vestige of the “vox populi” now vacant, vanished. However, this valorous visitation of a bygone vexation stands vivified, and has vowed to vanquish these venal and virulent vermin, van guarding vice and vouchsafing the violently vicious and voracious violation of volition. The only verdict is vengeance; a vendetta, held as a votive not in vain, for the value and veracity of such shall one day vindicate the vigilant and the virtuous. Verily this vichyssoise of verbiage veers most verbose, so let me simply add that it’s my very good honour to meet you and you may call me V.'];
   // then randomly select one of the three each time the page is reloaded.
 
 
