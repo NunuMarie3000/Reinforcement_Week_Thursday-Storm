@@ -84,20 +84,20 @@ const main = () => {
 //what if i push all the shifted characters into a new array, then immediately set the text content to that array?
 //need to use array.join() method to add the array characters together
 //NOTE: i have no idea how to get rid of the commas once the characters are printing
-//declare empty array
-let newArr = [];
-textarea.addEventListener('keydown', (e) => {
-  //set the label's text content to whatever value is in the textarea, we can use .value b/c textarea is input
-  e.preventDefault();
-  //push all shifted array items to newArr
-  newArr.push(codeCrewStringArray.shift());
-  //.join method to join each newArr character together
-  newArr.join(' ');
-  //set the textarea's text content to newArr so whenever the user presses the key, a new character from newArr is put in the textarea, gives illusion of ghost typing
-  textarea.textContent = newArr;
-  //set the label's textcontent to whatever value is in the textarea
-  label.textContent = textarea.value
- });
+// //declare empty array
+// let newArr = [];
+// textarea.addEventListener('keydown', (e) => {
+//   //set the label's text content to whatever value is in the textarea, we can use .value b/c textarea is input
+//   e.preventDefault();
+//   //push all shifted array items to newArr
+//   newArr.push(codeCrewStringArray.shift());
+//   //.join method to join each newArr character together
+//   newArr.join(' ');
+//   //set the textarea's text content to newArr so whenever the user presses the key, a new character from newArr is put in the textarea, gives illusion of ghost typing
+//   textarea.textContent = newArr;
+//   //set the label's textcontent to whatever value is in the textarea
+//   label.textContent = textarea.value
+//  });
 
 
   // Exercise 3:
@@ -171,10 +171,37 @@ textarea.addEventListener('keydown', (e) => {
 
   //   Challenge 1
   // Create additional strings and load them in an array
-  let vForVendetta = ['Voila! In view humble vaudevillian veteran, cast vicariously as both victim and villain by the vicissitudes of fate. This visage, no mere veneer of vanity, is a vestige of the “vox populi” now vacant, vanished. However, this valorous visitation of a bygone vexation stands vivified, and has vowed to vanquish these venal and virulent vermin, van guarding vice and vouchsafing the violently vicious and voracious violation of volition. The only verdict is vengeance; a vendetta, held as a votive not in vain, for the value and veracity of such shall one day vindicate the vigilant and the virtuous. Verily this vichyssoise of verbiage veers most verbose, so let me simply add that it’s my very good honour to meet you and you may call me V.'];
+  let vForVendetta = 'Voila! In view humble vaudevillian veteran, cast vicariously as both victim and villain by the vicissitudes of fate. This visage, no mere veneer of vanity, is a vestige of the “vox populi” now vacant, vanished. However, this valorous visitation of a bygone vexation stands vivified, and has vowed to vanquish these venal and virulent vermin, van guarding vice and vouchsafing the violently vicious and voracious violation of volition. The only verdict is vengeance; a vendetta, held as a votive not in vain, for the value and veracity of such shall one day vindicate the vigilant and the virtuous. Verily this vichyssoise of verbiage veers most verbose, so let me simply add that it’s my very good honour to meet you and you may call me V.';
+
+  let vForVendettaArray = vForVendetta.split('');
+
+  let iagoOthello = 'How am I then a villain To counsel Cassio to this parallel course, Directly to his good? Divinity of hell! When devils will the blackest sins put on, They do suggest at first with heavenly shows, As I do now: for whiles this honest fool Plies Desdemona to repair his fortunes And she for him pleads strongly to the Moor, I’ll pour this pestilence into his ear, That she repeals him for her body’s lust;And by how much she strives to do him good, She shall undo her credit with the Moor.So will I turn her virtue into pitch, And out of her own goodness make the net That shall enmesh them all.';
+
+  let iagoOthelloArray = iagoOthello.split('');
+
   // then randomly select one of the three each time the page is reloaded.
+  //i need to create an array, push each of the 3 arrays into it, then create a randomizer variable with math.random to pick a random index value 0-2 as the array to use for the browsing session
+  //this will return random index between 0 and 2
+  let randomIndex = Math.floor(Math.random() * 3);
 
+  //array holding 3 arrays to choose from
+  let trioArray = [];
+  trioArray.push(codeCrewStringArray, vForVendettaArray, iagoOthelloArray);
 
+  //array we're gonna push each character into
+  let randomizedArray = trioArray[randomIndex];
+  let newEmptyArray = [];
+  textarea.addEventListener('keydown', (e) => {
+    e.preventDefault();
+    //push all shifted array items to newArr
+    newEmptyArray.push(randomizedArray.shift());
+    //.join method to join each newArr character together
+    newEmptyArray.join(' ');
+    //set the textarea's text content to newArr so whenever the user presses the key, a new character from newArr is put in the textarea, gives illusion of ghost typing
+    textarea.textContent = newEmptyArray;
+    //set the label's textcontent to whatever value is in the textarea
+    label.textContent = textarea.value
+  });
 
 
 };
